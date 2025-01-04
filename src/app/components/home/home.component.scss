@@ -18,9 +18,10 @@
 
   .sets_container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
     justify-content: center;
+    margin-top: 1rem;
 
     .set_card {
       cursor: pointer;
@@ -48,6 +49,24 @@
           transform: scale(1.1) translateY(-5px);
         }
       }
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .sets_container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .sets_container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 1140px) {
+    .sets_container {
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 }
