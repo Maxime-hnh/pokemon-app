@@ -1,5 +1,9 @@
 # PokemonApp
 
+First training project using Angular.
+
+The purpose of the application is to find the Pokémon card you just unpacked, then click on it to be redirected to eBay with the correct search, allowing you to quickly get an estimate of its price. More features are coming soon.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
 ## Development server
