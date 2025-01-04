@@ -1,0 +1,53 @@
+.series_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  justify-content: center;
+
+  .card_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .serie_pokeball {
+    width: 36px;
+    height: 36px;
+    margin-right: 0.5rem;
+  }
+
+  .sets_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    justify-content: center;
+
+    .set_card {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border: 1px solid white;
+      padding: 0.75rem;
+      border-radius: 0.25rem;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      // transition: transform 300ms ease, box-shadow 300ms ease;
+
+      .set_logo {
+        width: 175px;
+        height: 100px;
+        transition: transform 300ms ease;
+      }
+
+      &:hover {
+        // transform: scale(1.05);
+        // box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 20px;
+
+        .set_logo {
+          transform: scale(1.1) translateY(-5px);
+        }
+      }
+    }
+  }
+}

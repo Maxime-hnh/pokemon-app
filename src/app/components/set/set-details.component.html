@@ -1,0 +1,5 @@
+<div id="set_container">
+  <img *ngFor="let card of set.cards" [src]="getCardImage(card.image, 'png','low')" alt="Favicon" class="card_img"
+    (click)="searchOnEbay(card.name, card.id)" />
+  />
+</div>

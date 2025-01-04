@@ -1,0 +1,17 @@
+<p-accordion value="0" class="series_container">
+  <p-accordion-panel *ngFor="let serie of series" value="{{serie.index}}">
+    <p-accordion-header>
+      <div class="card_header">
+        <img [src]="pokeball" alt="Favicon" class="serie_pokeball" />
+        <h2>{{serie.name}}</h2>
+      </div>
+    </p-accordion-header>
+    <p-accordion-content>
+      <div class="sets_container">
+        <div *ngFor="let set of serie.sets" class="set_card" (click)="navigateToSet(set.id)">
+          <img [src]="set.logo" alt="Favicon" class="set_logo" />
+        </div>
+      </div>
+    </p-accordion-content>
+  </p-accordion-panel>
+</p-accordion>

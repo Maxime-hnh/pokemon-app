@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 600;
+}
+
+.pi,
+::before,
+::after {
+  font-family: "primeicons" !important;
+}
+
+html,
+body {
+  height: 100%;
+
+  #root {
+    position: relative;
+
+    .root_container {
+      margin: 1rem;
+    }
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

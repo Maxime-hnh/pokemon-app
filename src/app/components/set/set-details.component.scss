@@ -1,0 +1,48 @@
+#set_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  justify-content: center;
+
+  .card_img {
+    cursor: pointer;
+    max-width: 100%;
+    height: auto;
+    transition: transform 500ms ease;
+
+    &:hover {
+      transform: scale(1.05) translateY(-10px);
+
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  #set_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #set_container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 1140px) {
+  #set_container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (min-width: 1140px) {
+  #set_container {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media screen and (min-width: 1540px) {
+  #set_container {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
