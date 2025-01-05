@@ -72,7 +72,5 @@ export class SetDetailsComponent implements OnInit {
       window.open(ebayUrl, '_blank');
     }
   }
-
-  // searchOnCardMarket()
 }
 

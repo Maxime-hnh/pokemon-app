@@ -1,0 +1,26 @@
+<div id="search_page">
+
+  <div>
+    <p-floatlabel variant="on">
+      <p-iconfield>
+        <p-inputicon class="pi pi-search" />
+        <input pInputText id="on_label" autocomplete="off" class="w-full" [(ngModel)]="searchValue"
+          (ngModelChange)="onSearchChange($event)" />
+        <p-inputicon class="pi pi-times" *ngIf="searchValue" (click)="searchValue = ''; onSearchChange('')" />
+      </p-iconfield>
+      <label for="on_label">Rechercher un pokémon</label>
+    </p-floatlabel>
+  </div>
+
+  <div *ngIf="cards$ | async as cards" class="cards_container">
+    <img *ngFor="let card of cards" [src]="getCardImage(card.image, 'png', 'low')" alt="{{card.name}}" class="card_img"
+      />
+  </div>
+  <!-- 
+  <div class="cards_container">
+    <ng-container *ngIf="cards$ | async as card">
+      <img *ngFor="let card of cards" [src]="getCardImage(card.image, 'png', 'low')"
+        alt="Favicon" class="card_img" (click)="searchOnEbay(card.name, card.id, card.localId)" />
+    </ng-container>
+  </div> -->
+</div>

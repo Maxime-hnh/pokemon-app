@@ -25,8 +25,12 @@ export class TCGdexService {
     return this.http.get<Set>(`https://api.tcgdex.net/v2/fr/sets/${setId}`)
   };
 
-  searchCard(searchValue: string, serie: string): any {
-    return this.http.get<Card[]>(`https://api.tcgdex.net/v2/fr/cards?id=like:${serie}&name=like:${searchValue}`)
+  searchCard(searchValue: string, serie?: string): Observable<Card[]> {
+    if (serie) {
+      return this.http.get<Card[]>(`https://api.tcgdex.net/v2/fr/cards?id=like:${serie}&name=like:${searchValue}`)
+    } else {
+      return this.http.get<Card[]>(`https://api.tcgdex.net/v2/fr/cards?name=like:${encodeURIComponent(searchValue)}`)
+    }
   }
 
   getImageUrl(url: string, extension: string, quality?: string): string {
