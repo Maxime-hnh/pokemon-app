@@ -1,5 +1,5 @@
-<p-accordion value="0" class="series_container">
-  <p-accordion-panel *ngFor="let serie of series" value="{{serie.index}}">
+<p-accordion value="['0']" class="series_container" [multiple]="true">
+  <p-accordion-panel *ngFor="let serie of (series$ | async)" [value]="serie.index!">
     <p-accordion-header>
       <div class="card_header">
         <img [src]="pokeball" alt="Favicon" class="serie_pokeball" />
@@ -9,7 +9,7 @@
     <p-accordion-content>
       <div class="sets_container">
         <div *ngFor="let set of serie.sets" class="set_card" (click)="navigateToSet(set.id)">
-          <img [src]="set.logo" alt="Favicon" class="set_logo" />
+          <img [src]="set.logo" alt="{{set.name}}" class="set_logo" />
         </div>
       </div>
     </p-accordion-content>

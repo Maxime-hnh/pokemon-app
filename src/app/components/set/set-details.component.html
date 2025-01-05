@@ -1,5 +1,24 @@
-<div id="set_container">
-  <img *ngFor="let card of set.cards" [src]="getCardImage(card.image, 'png','low')" alt="Favicon" class="card_img"
-    (click)="searchOnEbay(card.name, card.id)" />
-  />
+<div id="set_page" *ngIf="set$ | async as set">
+
+  <div>
+    <p-floatlabel variant="on">
+      <p-iconfield>
+        <p-inputicon class="pi pi-search" />
+        <input pInputText id="on_label" autocomplete="off" class="set_input" [(ngModel)]="searchValue" />
+        <p-inputicon class="pi pi-times" *ngIf="searchValue" (click)="searchValue = ''"  />
+      </p-iconfield>
+      <label for="on_label">Rechercher une carte</label>
+    </p-floatlabel>
+  </div>
+
+  <div class="set_container">
+    <ng-container *ngIf="set.cards && set.cards.length > 0; else noCards">
+      <img *ngFor="let card of set.cards | filterCards:searchValue" [src]="getCardImage(card.image, 'png', 'low')"
+        alt="Favicon" class="card_img" (click)="searchOnEbay(card.name, card.id, card.localId)" />
+    </ng-container>
+  </div>
+
+  <ng-template #noCards>
+    <p>No cards available.</p>
+  </ng-template>
 </div>

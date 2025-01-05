@@ -4,6 +4,10 @@ import { CommonModule } from '@angular/common';
 import { MenubarModule } from 'primeng/menubar';
 import { AccordionModule } from 'primeng/accordion';
 import { TCGdexService } from '../../services/tcgdex.service';
+import { Set } from '../../interfaces/set.interface';
+import { Serie } from '../../interfaces/serie.interface';
+import { Observable, Subscription, switchMap } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +17,8 @@ import { TCGdexService } from '../../services/tcgdex.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  series: any = null;
-  sets: any = null;
+  sets$: Observable<Set[]> | null = null;
+  series$: Observable<Serie[]> | null = null;
   loading = true;
   error: string | null = null;
   pokeball: string = '/assets/favicon.ico.png';
@@ -22,44 +26,30 @@ export class HomeComponent implements OnInit {
   constructor(private tcgdexService: TCGdexService, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
-    this.sets = this.tcgdexService.getSets().subscribe({
-      next: (setsData: any) => {
-        this.sets = setsData.map((set: any) => ({
+    this.sets$ = this.tcgdexService.getSets().pipe(
+      map((setsData: Set[]) =>
+        setsData.map((set: Set) => ({
           ...set,
           logo: this.tcgdexService.getImageUrl(set.logo, 'png'),
         }))
+      )
+    );
 
-        this.series = this.tcgdexService.getSeries().subscribe({
-          next: (seriesData: any) => {
-            this.series = seriesData
-              .map((serie: any, index: number) => ({
-                ...serie,
-                index,
-                logo: this.tcgdexService.getImageUrl(serie.logo, 'png'),
-                sets: this.sets
-                  .filter((set: any) => set.id.startsWith(serie.id))
-                  .reverse()
-              }))
-              .reverse()
-            this.loading = false;
-          },
-          error: (err: any) => {
-            console.error('Erreur lors de la récupération des séries :', err);
-            this.loading = false;
-            this.error = 'Impossible de charger les séries.';
-          }
-        });
-      },
-      error: (err: any) => {
-        console.error('Erreur lors de la récupération des sets :', err);
-        this.loading = false;
-        this.error = 'Impossible de charger les sets.';
-      }
-    });
-  }
-
-  getCardImage(localId: string, quality: string, extension: string): string {
-    return this.tcgdexService.getImageUrl(localId, quality, extension);
+    this.series$ = this.sets$.pipe(
+      switchMap((sets: Set[]) =>
+        this.tcgdexService.getSeries().pipe(
+          map((seriesData: Serie[]) =>
+            seriesData.map((serie: Serie, index: number) => ({
+              ...serie,
+              index,
+              logo: this.tcgdexService.getImageUrl(serie.logo, 'png'),
+              sets: sets
+                .filter((set: Set) => set.id.startsWith(serie.id))
+            }))
+          )
+        )
+      )
+    );
   }
 
   navigateToSet(setId: string): void {
