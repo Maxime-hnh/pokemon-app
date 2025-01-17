@@ -26,7 +26,7 @@ export class TCGdexService {
   };
 
   getCardById(cardId: string): Observable<Card> {
-    return this.http.get<Card>(`https://api.tcgdex.net/v2/en/cards/${cardId}`)
+    return this.http.get<Card>(`https://api.tcgdex.net/v2/fr/cards/${cardId}`)
   };
 
   searchCard(searchValue: string, serie?: string): Observable<Card[]> {
