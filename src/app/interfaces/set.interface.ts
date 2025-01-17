@@ -1,9 +1,9 @@
 import { CardBrief } from "./card.interface";
 import { SerieBrief } from "./serie.interface";
 
-interface CardCount {
-  total: number;
-  official: number;
+export interface CardCount {
+  total?: number;
+  official?: number;
   reverse?: number;
   holo?: number;
   firstEd?: number;
@@ -28,9 +28,9 @@ export interface Set {
 }
 
 export interface SetBrief {
-  id:string;
-  name:string;
-  logo:string;
-  symbol:string;
-  cardCount:CardCount;
+  id: string;
+  name: string;
+  logo: string;
+  symbol: string;
+  cardCount: CardCount;
 };

@@ -1,4 +1,4 @@
-import { SetBrief } from "./set.interface";
+import { CardCount, SetBrief } from "./set.interface";
 
 interface Variants {
   normal: boolean;
@@ -18,6 +18,7 @@ export interface Card {
   rarity: string;
   variants: Variants;
   set: SetBrief;
+  cardCount?: CardCount
 };
 
 export interface CardBrief {
