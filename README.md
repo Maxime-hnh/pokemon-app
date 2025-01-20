@@ -2,6 +2,9 @@
 
 First training project using Angular.
 
+## **Url**
+https://pokeprice.netlify.app/
+
 ## About the Application
 
 The purpose of the application is to find the Pokémon card you just unpacked, then click on it to be redirected to eBay with the correct search, allowing you to quickly get an estimate of its price. More features are coming soon.
